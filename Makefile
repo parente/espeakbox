@@ -1,4 +1,4 @@
-.PHONY: build dev-env kill
+.PHONY: build dev-env
 
 REPO:=parente/espeakbox
 TAG?=latest
