@@ -36,6 +36,34 @@ Clone this repository and then run:
 make build
 ```
 
+## API
+
+Request:
+
+```
+GET /speech?text=<utterance>
+            [&pitch=<0,99; default 50>]
+            [&rate=<80,450; default 175 wpm>]
+            [&voice=<name; default en>]
+            [&encoding=<mp3|opus; default mp3>]
+```
+
+Response:
+
+* `audio/mpeg` (mp3) or `audio/ogg` (opus) on success
+* `text/plain` with a status code >= 400 on error
+
+Request:
+
+```
+GET /voices
+```
+
+Response:
+
+* `application/json` encoding an object with a `names` list
+* `text/plain` with a status code >= 400 on error
+
 ## FAQ
 
 *Why is this not an automated build on Docker Hub?*
