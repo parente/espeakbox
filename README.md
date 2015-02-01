@@ -1,6 +1,6 @@
 # espeakbox
 
-[progrium/busybox](https://github.com/progrium/busybox) + [espeak](http://espeak.sourceforge.net/) + [lame](http://lame.sourceforge.net/) / [opus](http://www.opus-codec.org/) + a golang http server &rarr; a text-to-speech server in a ~16.5 MB Docker image
+[gliderlabs/alpine](https://github.com/gliderlabs/docker-alpine) + [espeak](http://espeak.sourceforge.net/) + [lame](http://lame.sourceforge.net/) / [opus](http://www.opus-codec.org/) + a golang http server &rarr; a text-to-speech server in a ~17 MB Docker image
 
 ## Usage
 
@@ -12,13 +12,7 @@ docker run --name espeakbox -d -p 8080:8080 parente/espeakbox
 
 ## Build
 
-To build it yourself, first install Go 1.4 on your platform with cross-compilation support for linux/amd64. For example, on a Mac with homebrew, run:
-
-``` 
-brew install go --cross-compile-common
-```
-
-Clone this repository and then run:
+Install Docker. Clone this repository and then run:
 
 ```
 make build
@@ -53,10 +47,6 @@ Response:
 * `text/plain` with a status code >= 400 on error
 
 ## FAQ
-
-*Why is this not an automated build on Docker Hub?*
-
-I didn't spend time trying to get the Go toolchain into the image which is the only place the automated build can execute commands.
 
 *How well does it perform?*
 
