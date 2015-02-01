@@ -2,13 +2,6 @@
 
 [progrium/busybox](https://github.com/progrium/busybox) + [espeak](http://espeak.sourceforge.net/) + [lame](http://lame.sourceforge.net/) / [opus](http://www.opus-codec.org/) + a golang http server &rarr; a text-to-speech server in a ~16.5 MB Docker image
 
-## Status
-
-- [x] Basic REST API
-- [x] Image on DockerHub
-- [ ] Documented code
-- [x] Performance metrics
-
 ## Usage
 
 To run a container from the latest image on Docker Hub:
