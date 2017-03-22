@@ -104,6 +104,9 @@ func buildEncodeCmd(values *url.Values, w *http.ResponseWriter) (cmd *exec.Cmd, 
 		// use audio/ogg since it seems better supported by all browsers
 		// than audio/opus
 		(*w).Header().Set("Content-Type", "audio/ogg")
+	} else if encoding == "wav" {
+		(*w).Header().Set("Content-Type", "audio/wav")
+		encode = exec.Command("cat")
 	} else {
 		err := errors.New("Unknown encoding requested: " + encoding)
 		http.Error(*w, err.Error(), 400)

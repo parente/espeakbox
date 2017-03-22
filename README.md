@@ -25,14 +25,14 @@ Request:
 ```
 GET /speech?text=<utterance>
             [&pitch=<0,99; default 50>]
-            [&rate=<80,450; default 175 wpm>]
+            [&speed=<80,450; default 175 wpm>]
             [&voice=<name; default en>]
             [&encoding=<mp3|opus; default mp3>]
 ```
 
 Response:
 
-* `audio/mpeg` (mp3) or `audio/ogg` (opus) on success
+* `audio/wav  (wave),  audio/mpeg` (mp3) or `audio/ogg` (opus) on success
 * `text/plain` with a status code >= 400 on error
 
 Request:
