@@ -1,6 +1,5 @@
 FROM gliderlabs/alpine:3.1
-RUN apk-install espeak opus lame flac && \
- apk-install wget && \
+RUN apk-install espeak opus lame flac wget && \
  apk del libstdc++ 
     
 RUN cd /tmp && \
