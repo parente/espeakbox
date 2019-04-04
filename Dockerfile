@@ -1,7 +1,8 @@
 FROM gliderlabs/alpine:3.1
 RUN apk-install espeak opus lame flac && \
-    apk del libstdc++ && \
-    apk-install wget
+ apk-install wget && \
+ apk del libstdc++ 
+    
 RUN cd /tmp && \
 wget https://downloads.xiph.org/releases/opus/opus-tools-0.1.9.tar.gz --no-check-certificate && \
     tar xzf opus-tools-0.1.9.tar.gz && \
