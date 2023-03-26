@@ -214,9 +214,44 @@ func voicesHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(cachedVoicesJSON)
 }
 
+// Handles a request to get the ipa of a word.
+func ipaHandler(w http.ResponseWriter, r *http.Request) {
+
+	args := []string{"--ipa"}
+
+	values := r.URL.Query()
+
+	// text is the only required parameter
+	text := values.Get("text")
+	if len(text) == 0 {
+		err := errors.New("Missing required parameter: text")
+		http.Error(w, err.Error(), 400)
+		return
+	} else {
+		args = append(args, text)
+	}
+
+	// voice
+	voice := values.Get("voice")
+	if len(voice) > 0 {
+		args = append(args, "-v")
+		args = append(args, voice)
+	}
+
+	var ipaStr, err = exec.Command("espeak", args...).Output()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+
+	w.Write(ipaStr)
+}
+
 func main() {
 	http.HandleFunc("/speech", speechHandler)
 	http.HandleFunc("/voices", voicesHandler)
+	http.HandleFunc("/ipa", ipaHandler)
 
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
