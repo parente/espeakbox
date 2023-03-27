@@ -1,12 +1,11 @@
-FROM gliderlabs/alpine:3.1
-RUN apk-install espeak opus lame flac wget && \
- apk del libstdc++ 
-    
+FROM alpine:3.17.2
+RUN apk add --no-cache espeak opus lame flac wget && \
+    apk del libstdc++
 RUN cd /tmp && \
-wget https://downloads.xiph.org/releases/opus/opus-tools-0.1.9.tar.gz --no-check-certificate && \
-    tar xzf opus-tools-0.1.9.tar.gz && \
+    wget https://downloads.xiph.org/releases/opus/opus-tools-0.1.9.tar.gz --no-check-certificate && \
+tar xzf opus-tools-0.1.9.tar.gz && \
     cd opus-tools-0.1.9/ && \
-    apk-install build-base flac-dev opus-dev libogg-dev && \
+    apk add --no-cache build-base flac-dev opus-dev libogg-dev && \
     ./configure && \
     make && \
     make install && \
@@ -14,7 +13,7 @@ wget https://downloads.xiph.org/releases/opus/opus-tools-0.1.9.tar.gz --no-check
     apk del build-base flac-dev opus-dev libogg-dev
 COPY server.go /tmp/
 RUN cd /tmp && \
-    apk-install go && \
+    apk add --no-cache go && \
     go build -o /server server.go && \
     apk del go && \
     rm /tmp/server.go
